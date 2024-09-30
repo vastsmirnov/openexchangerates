@@ -40,6 +40,9 @@ class CurrencyFactoryTest extends TestCase
         $this->currencyFactory->create($invalidInput);
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public static function invalidInputProvider(): array
     {
         return [

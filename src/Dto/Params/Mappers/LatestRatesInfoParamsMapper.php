@@ -8,6 +8,9 @@ use Src\Dto\Params\LatestRatesInfoParams;
 
 final class LatestRatesInfoParamsMapper implements LatestRatesInfoParamsMapperInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function toQueryParams(LatestRatesInfoParams $params): array
     {
         $result = [

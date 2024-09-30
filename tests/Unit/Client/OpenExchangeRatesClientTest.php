@@ -18,6 +18,7 @@ use RuntimeException;
 use Src\Client\Exceptions\ExceptionResolverInterface;
 use Src\Client\Exceptions\ExchangeRatesException;
 use Src\Client\OpenExchangeRatesClient;
+use Src\Client\OpenExchangeRatesClientInterface;
 use Src\Client\Utils\UrlUtils;
 use Src\Client\ValueObjects\AppId;
 use Src\Client\ValueObjects\BaseUrl;
@@ -36,7 +37,7 @@ class OpenExchangeRatesClientTest extends TestCase
 
     private bool $isPrettyPrint;
 
-    private OpenExchangeRatesClient $client;
+    private OpenExchangeRatesClientInterface $client;
 
     protected function setUp(): void
     {

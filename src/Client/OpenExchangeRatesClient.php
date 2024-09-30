@@ -15,7 +15,7 @@ use Src\Client\ValueObjects\AppId;
 use Src\Client\ValueObjects\BaseUrl;
 use Throwable;
 
-final class OpenExchangeRatesClient
+final class OpenExchangeRatesClient implements OpenExchangeRatesClientInterface
 {
     private const HEADER_ACCEPT = 'Accept';
     private const HEADER_APPLICATION_JSON = 'application/json';
@@ -36,6 +36,9 @@ final class OpenExchangeRatesClient
     ) {
     }
 
+    /**
+     * @inheritDoc
+     */
     public function get(string $endpoint, array $params = []): array
     {
         $params[self::QUERY_PARAM_APP_ID] = $this->appId->value;

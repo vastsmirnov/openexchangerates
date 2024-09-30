@@ -26,6 +26,9 @@ class UrlUtilsTest extends TestCase
         $this->assertEquals($expectedUrl, $result);
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public static function validUrlProvider(): array
     {
         return [
@@ -43,6 +46,9 @@ class UrlUtilsTest extends TestCase
         $this->urlUtils->prepareUrl($baseUrl, $endpoint);
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public static function invalidUrlProvider(): array
     {
         return [

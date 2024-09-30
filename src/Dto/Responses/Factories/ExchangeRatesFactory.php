@@ -16,6 +16,9 @@ final class ExchangeRatesFactory implements ExchangeRatesFactoryInterface
     ) {
     }
 
+    /**
+     * @inheritDoc
+     */
     public function createFromArray(array $data): ExchangeCurrencyRates
     {
         $code = $data['base'] ?? throw new InvalidArgumentException('Base is missing.');

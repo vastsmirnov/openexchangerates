@@ -11,6 +11,9 @@ final class CurrencyRatesFactory implements CurrencyRatesFactoryInterface
     ) {
     }
 
+    /**
+     * @inheritDoc
+     */
     public function createFromArray(array $data): array
     {
         $rates = [];

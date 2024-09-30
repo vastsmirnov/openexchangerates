@@ -18,7 +18,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
         $this->mapper = new LatestRatesInfoParamsMapper();
     }
 
-    public function testToQueryParamsWithEmptyTargetCurrencyCodes()
+    public function testToQueryParamsWithEmptyTargetCurrencyCodes(): void
     {
         $params = new LatestRatesInfoParams('USD', [], true);
         $result = $this->mapper->toQueryParams($params);
@@ -31,7 +31,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testToQueryParamsWithNonEmptyTargetCurrencyCodes()
+    public function testToQueryParamsWithNonEmptyTargetCurrencyCodes(): void
     {
         $params = new LatestRatesInfoParams('EUR', ['USD', 'RUB'], false);
         $result = $this->mapper->toQueryParams($params);
@@ -45,7 +45,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testToQueryParamsWithSingleTargetCurrencyCode()
+    public function testToQueryParamsWithSingleTargetCurrencyCode(): void
     {
         $params = new LatestRatesInfoParams('RUB', ['EUR'], true);
         $result = $this->mapper->toQueryParams($params);

@@ -35,6 +35,9 @@ class ExceptionResolverTest extends TestCase
         $this->assertEquals($decoded['description'], $exception->getDescription());
     }
 
+    /**
+     * @return array<array<string>>
+     */
     public static function validExceptionDataProvider(): array
     {
         return [
