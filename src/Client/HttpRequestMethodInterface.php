@@ -6,5 +6,5 @@ namespace Src\Client;
 
 interface HttpRequestMethodInterface
 {
-    const string METHOD_GET = 'GET';
+    public const string METHOD_GET = 'GET';
 }

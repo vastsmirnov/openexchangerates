@@ -28,7 +28,7 @@ class OpenExchangeRatesClientTest extends TestCase
 
     private ExceptionResolverInterface|MockObject $exceptionResolverMock;
 
-    private UrlUtils|MockObject  $urlUtilsMock;
+    private UrlUtils|MockObject $urlUtilsMock;
 
     private BaseUrl $baseUrl;
 
@@ -115,10 +115,10 @@ class OpenExchangeRatesClientTest extends TestCase
         ]);
         $responseBody = json_encode(
             [
-                "error" => true,
-                "status" => 401,
-                "message" => "invalid_app_id",
-                "description" => "invalid_app_id_description"
+                'error' => true,
+                'status' => 401,
+                'message' => 'invalid_app_id',
+                'description' => 'invalid_app_id_description'
             ],
             JSON_THROW_ON_ERROR
         );

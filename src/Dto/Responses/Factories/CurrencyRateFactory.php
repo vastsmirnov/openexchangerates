@@ -11,7 +11,8 @@ final class CurrencyRateFactory implements CurrencyRateFactoryInterface
     public function __construct(
         private CurrencyFactoryInterface $currencyFactory,
         private RateFactoryInterface $rateFactory
-    ) {}
+    ) {
+    }
 
     public function create(string $currencyCode, float $rate): CurrencyRate
     {

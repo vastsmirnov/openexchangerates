@@ -33,7 +33,8 @@ final class OpenExchangeRatesClient
         private BaseUrl $baseUrl,
         private AppId $appId,
         private bool $isPrettyPrint = false
-    ) {}
+    ) {
+    }
 
     public function get(string $endpoint, array $params = []): array
     {

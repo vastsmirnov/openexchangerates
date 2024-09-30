@@ -12,8 +12,9 @@ readonly class LatestRatesInfoParams
      * @param bool $showAlternative
      */
     public function __construct(
-        public string $byCurrency = "USD",
+        public string $byCurrency = 'USD',
         public array $targetCurrencyCodes = [],
         public bool $showAlternative = false
-    ) {}
+    ) {
+    }
 }

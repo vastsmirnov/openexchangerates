@@ -12,8 +12,8 @@ class ExchangeRatesException extends RuntimeException
     private string $description;
 
     public function __construct(
-        string $message = "",
-        string $description = "",
+        string $message = '',
+        string $description = '',
         int $code = 0,
         ?Throwable $previous = null
     ) {

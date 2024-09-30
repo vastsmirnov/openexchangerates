@@ -6,5 +6,4 @@ namespace Src\Client\Exceptions;
 
 class UnknownException extends ExchangeRatesException
 {
-
 }

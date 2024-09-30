@@ -13,7 +13,8 @@ final class ExchangeRatesFactory implements ExchangeRatesFactoryInterface
         private CurrencyFactoryInterface $currencyFactory,
         private DateTimeImmutableFactoryInterface $dateTimeImmutableFactory,
         private CurrencyRatesFactoryInterface $currencyRatesFactory
-    ) {}
+    ) {
+    }
 
     public function createFromArray(array $data): ExchangeCurrencyRates
     {

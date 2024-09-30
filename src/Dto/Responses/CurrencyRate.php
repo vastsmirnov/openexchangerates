@@ -9,5 +9,6 @@ readonly class CurrencyRate
     public function __construct(
         public Currency $currency,
         public Rate $rate
-    ) {}
+    ) {
+    }
 }

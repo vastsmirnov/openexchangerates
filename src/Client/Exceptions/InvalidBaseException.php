@@ -6,5 +6,4 @@ namespace Src\Client\Exceptions;
 
 class InvalidBaseException extends ExchangeRatesException
 {
-
 }

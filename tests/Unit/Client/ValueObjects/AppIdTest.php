@@ -27,9 +27,6 @@ class AppIdTest extends TestCase
         new AppId('');
     }
 
-    /**
-     * Проверяет, что создание экземпляра с пробельными символами выбрасывает исключение.
-     */
     public function testCannotCreateAppIdWithWhitespace(): void
     {
         $this->expectException(InvalidArgumentException::class);

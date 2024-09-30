@@ -8,7 +8,8 @@ final class CurrencyRatesFactory implements CurrencyRatesFactoryInterface
 {
     public function __construct(
         private CurrencyRateFactoryInterface $currencyRateFactory,
-    ) {}
+    ) {
+    }
 
     public function createFromArray(array $data): array
     {

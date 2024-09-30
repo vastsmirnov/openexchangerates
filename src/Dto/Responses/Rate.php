@@ -8,5 +8,6 @@ readonly class Rate
 {
     public function __construct(
         public float $value
-    ) {}
+    ) {
+    }
 }

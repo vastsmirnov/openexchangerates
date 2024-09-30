@@ -78,6 +78,4 @@ class ExceptionResolverTest extends TestCase
         $exception = $this->resolver->resolve($jsonBody);
         $this->assertInstanceOf(UnknownException::class, $exception);
     }
-
-
 }
