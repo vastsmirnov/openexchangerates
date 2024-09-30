@@ -6,5 +6,5 @@ use Src\Dto\Responses\Currency;
 
 interface CurrencyFactoryInterface
 {
-    public function create(string $trimmedCode): Currency;
+    public function create(string $currencyCode): Currency;
 }
