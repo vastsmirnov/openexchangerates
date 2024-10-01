@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Src\Dto\Responses\Factories;
 
 use InvalidArgumentException;
-use Src\Dto\Responses\Currency;
+use Src\Dto\Responses\CurrencyDto;
 
-final class CurrencyFactory implements CurrencyFactoryInterface
+final class CurrencyDtoFactory implements CurrencyDtoFactoryInterface
 {
-    public function create(string $currencyCode): Currency
+    public function create(string $currencyCode): CurrencyDto
     {
         if (trim($currencyCode) === '') {
             throw new InvalidArgumentException('Currency code can not be empty.');
         }
 
-        return new Currency($currencyCode);
+        return new CurrencyDto($currencyCode);
     }
 }

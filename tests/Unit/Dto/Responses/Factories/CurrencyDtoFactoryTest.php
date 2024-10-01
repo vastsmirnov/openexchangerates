@@ -7,27 +7,27 @@ namespace Tests\Unit\Dto\Responses\Factories;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Src\Dto\Responses\Currency;
-use Src\Dto\Responses\Factories\CurrencyFactory;
-use Src\Dto\Responses\Factories\CurrencyFactoryInterface;
+use Src\Dto\Responses\CurrencyDto;
+use Src\Dto\Responses\Factories\CurrencyDtoFactory;
+use Src\Dto\Responses\Factories\CurrencyDtoFactoryInterface;
 
-class CurrencyFactoryTest extends TestCase
+class CurrencyDtoFactoryTest extends TestCase
 {
-    private CurrencyFactoryInterface $currencyFactory;
+    private CurrencyDtoFactoryInterface $currencyDtoFactory;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->currencyFactory = new CurrencyFactory();
+        $this->currencyDtoFactory = new CurrencyDtoFactory();
     }
 
     public function testCreateWithValidInputs(): void
     {
         $validCode = 'USD';
-        $currency = $this->currencyFactory->create($validCode);
+        $currency = $this->currencyDtoFactory->create($validCode);
 
-        $this->assertInstanceOf(Currency::class, $currency);
+        $this->assertInstanceOf(CurrencyDto::class, $currency);
         $this->assertSame($validCode, $currency->code);
     }
 
@@ -37,7 +37,7 @@ class CurrencyFactoryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Currency code can not be empty.');
 
-        $this->currencyFactory->create($invalidInput);
+        $this->currencyDtoFactory->create($invalidInput);
     }
 
     /**

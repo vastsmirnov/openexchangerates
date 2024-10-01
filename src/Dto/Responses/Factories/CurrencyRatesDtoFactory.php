@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Src\Dto\Responses\Factories;
 
-final class CurrencyRatesFactory implements CurrencyRatesFactoryInterface
+final class CurrencyRatesDtoFactory implements CurrencyRatesDtoFactoryInterface
 {
     public function __construct(
-        private CurrencyRateFactoryInterface $currencyRateFactory,
+        private CurrencyRateDtoFactoryInterface $currencyRateDtoFactory,
     ) {
     }
 
@@ -18,7 +18,7 @@ final class CurrencyRatesFactory implements CurrencyRatesFactoryInterface
     {
         $rates = [];
         foreach ($data as $currencyCode => $rate) {
-            $rates[] = $this->currencyRateFactory->create($currencyCode, (float) $rate);
+            $rates[] = $this->currencyRateDtoFactory->create($currencyCode, (float) $rate);
         }
 
         return $rates;

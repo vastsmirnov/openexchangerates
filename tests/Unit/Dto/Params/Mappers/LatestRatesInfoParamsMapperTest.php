@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Dto\Params\Mappers;
 
 use PHPUnit\Framework\TestCase;
-use Src\Dto\Params\LatestRatesInfoParams;
+use Src\Dto\Params\LatestRatesInfoParamsDto;
 use Src\Dto\Params\Mappers\LatestRatesInfoParamsMapper;
 
 class LatestRatesInfoParamsMapperTest extends TestCase
@@ -20,7 +20,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
 
     public function testToQueryParamsWithEmptyTargetCurrencyCodes(): void
     {
-        $params = new LatestRatesInfoParams('USD', [], true);
+        $params = new LatestRatesInfoParamsDto('USD', [], true);
         $result = $this->mapper->toQueryParams($params);
 
         $expected = [
@@ -33,7 +33,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
 
     public function testToQueryParamsWithNonEmptyTargetCurrencyCodes(): void
     {
-        $params = new LatestRatesInfoParams('EUR', ['USD', 'RUB'], false);
+        $params = new LatestRatesInfoParamsDto('EUR', ['USD', 'RUB'], false);
         $result = $this->mapper->toQueryParams($params);
 
         $expected = [
@@ -47,7 +47,7 @@ class LatestRatesInfoParamsMapperTest extends TestCase
 
     public function testToQueryParamsWithSingleTargetCurrencyCode(): void
     {
-        $params = new LatestRatesInfoParams('RUB', ['EUR'], true);
+        $params = new LatestRatesInfoParamsDto('RUB', ['EUR'], true);
         $result = $this->mapper->toQueryParams($params);
 
         $expected = [

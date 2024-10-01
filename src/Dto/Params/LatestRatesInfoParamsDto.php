@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Dto\Params;
 
-readonly class LatestRatesInfoParams
+readonly class LatestRatesInfoParamsDto
 {
     /**
      * @param string $byCurrency

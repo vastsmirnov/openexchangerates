@@ -2,13 +2,21 @@
 
 namespace Src\Dto\Params\Mappers;
 
-use Src\Dto\Params\LatestRatesInfoParams;
+use Src\Dto\Params\LatestRatesInfoParamsDto;
 
 interface LatestRatesInfoParamsMapperInterface
 {
     /**
-     * @param LatestRatesInfoParams $params
+     * @param LatestRatesInfoParamsDto $params
      * @return array<string, string>
+     *
+     * @example
+     *  <code>
+     *      $params = [
+     *          "base" => "BTC",
+     *          "symbols" => "EUR,RUB"
+     *      ];
+     *  </code>
      */
-    public function toQueryParams(LatestRatesInfoParams $params): array;
+    public function toQueryParams(LatestRatesInfoParamsDto $params): array;
 }

@@ -6,15 +6,15 @@ namespace Src\Dto\Responses;
 
 use DateTimeImmutable;
 
-readonly class ExchangeCurrencyRates
+readonly class ExchangeCurrencyRatesDto
 {
     /**
-     * @param Currency $targetCurrency
+     * @param CurrencyDto $targetCurrency
      * @param DateTimeImmutable $datetime
-     * @param CurrencyRate[] $currencyRates
+     * @param CurrencyRateDto[] $currencyRates
      */
     public function __construct(
-        public Currency $targetCurrency,
+        public CurrencyDto $targetCurrency,
         public DateTimeImmutable $datetime,
         public array $currencyRates
     ) {

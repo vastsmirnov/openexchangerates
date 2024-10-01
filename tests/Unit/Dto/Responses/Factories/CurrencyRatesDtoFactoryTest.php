@@ -7,27 +7,27 @@ namespace Tests\Unit\Dto\Responses\Factories;
 use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Src\Dto\Responses\Currency;
-use Src\Dto\Responses\CurrencyRate;
-use Src\Dto\Responses\Factories\CurrencyRateFactoryInterface;
-use Src\Dto\Responses\Factories\CurrencyRatesFactory;
-use Src\Dto\Responses\Factories\CurrencyRatesFactoryInterface;
-use Src\Dto\Responses\Rate;
+use Src\Dto\Responses\CurrencyDto;
+use Src\Dto\Responses\CurrencyRateDto;
+use Src\Dto\Responses\Factories\CurrencyRateDtoFactoryInterface;
+use Src\Dto\Responses\Factories\CurrencyRatesDtoFactory;
+use Src\Dto\Responses\Factories\CurrencyRatesDtoFactoryInterface;
+use Src\Dto\Responses\RateDto;
 
-class CurrencyRatesFactoryTest extends TestCase
+class CurrencyRatesDtoFactoryTest extends TestCase
 {
-    private CurrencyRateFactoryInterface|MockObject $currencyRateFactoryMock;
+    private CurrencyRateDtoFactoryInterface|MockObject $currencyRateDtoFactoryMock;
 
-    private CurrencyRatesFactoryInterface $currencyRatesFactory;
+    private CurrencyRatesDtoFactoryInterface $currencyRatesDtoFactory;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->currencyRateFactoryMock = $this->createMock(CurrencyRateFactoryInterface::class);
+        $this->currencyRateDtoFactoryMock = $this->createMock(CurrencyRateDtoFactoryInterface::class);
 
-        $this->currencyRatesFactory = new CurrencyRatesFactory(
-            $this->currencyRateFactoryMock
+        $this->currencyRatesDtoFactory = new CurrencyRatesDtoFactory(
+            $this->currencyRateDtoFactoryMock
         );
     }
 
@@ -35,11 +35,11 @@ class CurrencyRatesFactoryTest extends TestCase
     {
         $data = [];
 
-        $this->currencyRateFactoryMock
+        $this->currencyRateDtoFactoryMock
             ->expects($this->never())
             ->method('create');
 
-        $result = $this->currencyRatesFactory->createFromArray($data);
+        $result = $this->currencyRatesDtoFactory->createFromArray($data);
 
         $this->assertIsArray($result);
         $this->assertEmpty($result);
@@ -54,12 +54,12 @@ class CurrencyRatesFactoryTest extends TestCase
         ];
 
         $expectedCurrencyRates = [
-            'USD' => new CurrencyRate(new Currency('USD'), new Rate(1.0)),
-            'EUR' => new CurrencyRate(new Currency('EUR'), new Rate(0.85)),
-            'RUB' => new CurrencyRate(new Currency('RUB'), new Rate(0.53)),
+            'USD' => new CurrencyRateDto(new CurrencyDto('USD'), new RateDto(1.0)),
+            'EUR' => new CurrencyRateDto(new CurrencyDto('EUR'), new RateDto(0.85)),
+            'RUB' => new CurrencyRateDto(new CurrencyDto('RUB'), new RateDto(0.53)),
         ];
 
-        $this->currencyRateFactoryMock
+        $this->currencyRateDtoFactoryMock
             ->expects($this->exactly(3))
             ->method('create')
             ->willReturnCallback(function (string $currencyCode) use ($expectedCurrencyRates) {
@@ -67,7 +67,7 @@ class CurrencyRatesFactoryTest extends TestCase
                     ?? throw new InvalidArgumentException("Invalid currency code \"$currencyCode\".");
             });
 
-        $result = $this->currencyRatesFactory->createFromArray($data);
+        $result = $this->currencyRatesDtoFactory->createFromArray($data);
 
         $this->assertIsArray($result);
         $this->assertCount(3, $result);

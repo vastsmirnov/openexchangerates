@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Src\Dto\Responses;
 
-readonly class Rate
+readonly class CurrencyRateDto
 {
     public function __construct(
-        public float $value
+        public CurrencyDto $currency,
+        public RateDto $rate
     ) {
     }
 }

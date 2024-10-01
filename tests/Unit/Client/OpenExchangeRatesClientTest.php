@@ -70,8 +70,23 @@ class OpenExchangeRatesClientTest extends TestCase
             'app_id' => 'test_app_id',
             'prettyprint' => false,
         ]);
-        $responseBody = json_encode(['rates' => ['EUR' => 0.85]], JSON_THROW_ON_ERROR);
-        $expectedResult = ['rates' => ['EUR' => 0.85]];
+        $responseBody = json_encode(
+            [
+                'base' => 'USD',
+                'timestamps' => 1609459200,
+                'rates' => [
+                    'EUR' => 0.85
+                ]
+            ],
+            JSON_THROW_ON_ERROR
+        );
+        $expectedResult = [
+            'base' => 'USD',
+            'timestamps' => 1609459200,
+            'rates' => [
+                'EUR' => 0.85
+            ]
+        ];
 
         $this->urlUtilsMock
             ->expects($this->once())

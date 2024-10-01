@@ -8,38 +8,38 @@ use DateTimeImmutable;
 use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Src\Dto\Responses\Currency;
-use Src\Dto\Responses\CurrencyRate;
-use Src\Dto\Responses\ExchangeCurrencyRates;
-use Src\Dto\Responses\Factories\CurrencyFactoryInterface;
-use Src\Dto\Responses\Factories\CurrencyRatesFactoryInterface;
+use Src\Dto\Responses\CurrencyDto;
+use Src\Dto\Responses\CurrencyRateDto;
+use Src\Dto\Responses\ExchangeCurrencyRatesDto;
+use Src\Dto\Responses\Factories\CurrencyDtoFactoryInterface;
+use Src\Dto\Responses\Factories\CurrencyRatesDtoFactoryInterface;
 use Src\Dto\Responses\Factories\DateTimeImmutableFactoryInterface;
-use Src\Dto\Responses\Factories\ExchangeRatesFactory;
-use Src\Dto\Responses\Factories\ExchangeRatesFactoryInterface;
-use Src\Dto\Responses\Rate;
+use Src\Dto\Responses\Factories\ExchangeRatesDtoFactory;
+use Src\Dto\Responses\Factories\ExchangeRatesDtoFactoryInterface;
+use Src\Dto\Responses\RateDto;
 
-class ExchangeRatesFactoryTest extends TestCase
+class ExchangeRatesDtoFactoryTest extends TestCase
 {
-    private CurrencyFactoryInterface|MockObject $currencyFactoryMock;
+    private CurrencyDtoFactoryInterface|MockObject $currencyDtoFactoryMock;
 
     private DateTimeImmutableFactoryInterface|MockObject $dateTimeImmutableFactoryMock;
 
-    private CurrencyRatesFactoryInterface|MockObject $currencyRatesFactoryMock;
+    private CurrencyRatesDtoFactoryInterface|MockObject $currencyRatesDtoFactoryMock;
 
-    private ExchangeRatesFactoryInterface $exchangeRatesFactory;
+    private ExchangeRatesDtoFactoryInterface $exchangeRatesDtoFactory;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->currencyFactoryMock = $this->createMock(CurrencyFactoryInterface::class);
+        $this->currencyDtoFactoryMock = $this->createMock(CurrencyDtoFactoryInterface::class);
         $this->dateTimeImmutableFactoryMock = $this->createMock(DateTimeImmutableFactoryInterface::class);
-        $this->currencyRatesFactoryMock = $this->createMock(CurrencyRatesFactoryInterface::class);
+        $this->currencyRatesDtoFactoryMock = $this->createMock(CurrencyRatesDtoFactoryInterface::class);
 
-        $this->exchangeRatesFactory = new ExchangeRatesFactory(
-            $this->currencyFactoryMock,
+        $this->exchangeRatesDtoFactory = new ExchangeRatesDtoFactory(
+            $this->currencyDtoFactoryMock,
             $this->dateTimeImmutableFactoryMock,
-            $this->currencyRatesFactoryMock
+            $this->currencyRatesDtoFactoryMock
         );
     }
 
@@ -56,16 +56,16 @@ class ExchangeRatesFactoryTest extends TestCase
         ];
         $timestamp = 1609459200;
 
-        $targetCurrency = new Currency('USD');
+        $targetCurrency = new CurrencyDto('USD');
         $dateTime = (new DateTimeImmutable())->setTimestamp($timestamp);
         $currencyRates = [
-            new CurrencyRate(new Currency('EUR'), new Rate(0.85)),
-            new CurrencyRate(new Currency('RUB'), new Rate(0.53)),
+            new CurrencyRateDto(new CurrencyDto('EUR'), new RateDto(0.85)),
+            new CurrencyRateDto(new CurrencyDto('RUB'), new RateDto(0.53)),
         ];
 
-        $exchangeCurrencyRates = new ExchangeCurrencyRates($targetCurrency, $dateTime, $currencyRates);
+        $exchangeCurrencyRates = new ExchangeCurrencyRatesDto($targetCurrency, $dateTime, $currencyRates);
 
-        $this->currencyFactoryMock
+        $this->currencyDtoFactoryMock
             ->expects($this->once())
             ->method('create')
             ->with('USD')
@@ -78,19 +78,19 @@ class ExchangeRatesFactoryTest extends TestCase
             ->willReturn($dateTime);
 
         $expectedCurrencyRates = [
-            new CurrencyRate(new Currency('EUR'), new Rate(0.85)),
-            new CurrencyRate(new Currency('RUB'), new Rate(0.53)),
+            new CurrencyRateDto(new CurrencyDto('EUR'), new RateDto(0.85)),
+            new CurrencyRateDto(new CurrencyDto('RUB'), new RateDto(0.53)),
         ];
 
-        $this->currencyRatesFactoryMock
+        $this->currencyRatesDtoFactoryMock
             ->expects($this->once())
             ->method('createFromArray')
             ->with($rates)
             ->willReturn($expectedCurrencyRates);
 
-        $result = $this->exchangeRatesFactory->createFromArray($data);
+        $result = $this->exchangeRatesDtoFactory->createFromArray($data);
 
-        $this->assertInstanceOf(ExchangeCurrencyRates::class, $result);
+        $this->assertInstanceOf(ExchangeCurrencyRatesDto::class, $result);
         $this->assertSame($exchangeCurrencyRates->targetCurrency, $result->targetCurrency);
         $this->assertSame($exchangeCurrencyRates->datetime, $result->datetime);
         $this->assertEquals($exchangeCurrencyRates->currencyRates, $result->currencyRates);
@@ -108,7 +108,7 @@ class ExchangeRatesFactoryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Base is missing.');
 
-        $this->exchangeRatesFactory->createFromArray($data);
+        $this->exchangeRatesDtoFactory->createFromArray($data);
     }
 
     public function testCreateFromArrayThrowsExceptionWhenTimestampIsMissing(): void
@@ -123,7 +123,7 @@ class ExchangeRatesFactoryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Timestamp is missing.');
 
-        $this->exchangeRatesFactory->createFromArray($data);
+        $this->exchangeRatesDtoFactory->createFromArray($data);
     }
 
     public function testCreateFromArrayThrowsExceptionWhenRatesIsMissing(): void
@@ -136,6 +136,6 @@ class ExchangeRatesFactoryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Rates is missing.');
 
-        $this->exchangeRatesFactory->createFromArray($data);
+        $this->exchangeRatesDtoFactory->createFromArray($data);
     }
 }
