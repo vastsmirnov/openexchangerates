@@ -20,6 +20,9 @@
     },
     "scripts": {
         "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --dry-run --diff",
-        "phpstan": "./vendor/bin/phpstan analyse"
+        "phpstan": "./vendor/bin/phpstan analyse",
+        "phpunit-unit": "./vendor/bin/phpunit --configuration phpunit.xml --testsuite Unit --testdox",
+        "phpunit-integration": "./vendor/bin/phpunit --configuration phpunit.xml --testsuite Integration --testdox",
+        "phpunit-all": "./vendor/bin/phpunit --configuration phpunit.xml --testdox"
     }
 }

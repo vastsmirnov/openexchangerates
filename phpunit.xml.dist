@@ -4,9 +4,16 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
+    <php>
+        <env name="APP_ID" value="APP_ID"/>
+        <env name="OPEN_EXCHANGE_BASE_URL" value="https://openexchangerates.org"/>
+    </php>
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
         </testsuite>
     </testsuites>
     <source>
